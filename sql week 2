@@ -1,0 +1,38 @@
+List employee details.
+    SQL> select * from emp2b4;
+List the department Details.
+    SQL> select * from dept2b4;
+Update emp2b4 table and change employee name, ADAMS to ADAM.
+    SQL> update emp2b4 set ename='ADAM' where empno=7876;
+Update emp2b4 table and change sal,comm. to 2000 & 500 respectively for an employee with empno 7844.
+    SQL> update emp2b4 set sal=2000, comm=500 where empno=7844;
+Select deptno, dname ,of deptno>10 and located in ‘NEWYORK’.
+    SQL> select deptno,dname from dept2b4 where deptno>10 and loc='NEW YORK';
+List all employee details whose empno=10 and whose job is clerk.
+    SQL> select * from emp2b4 where deptno=10 and job='CLERK';
+List all employee hired during 1981?
+    SQL> select * from emp2b4 where hiredate between '01-JAN-1981' and '31-DEC-1981';
+List all empno, ename of all employee in format “empno ename”.
+    SQL> select empno,ename from emp2b4;
+Find the total number of clerks in department 10.
+    SQL> select count(*),deptno from emp2b4 where job='CLERK' group by deptno having deptno=10;
+Find the average salary of employees
+    SQL> select avg(sal) from emp2b4;
+Find minimum salary paid employee and employee details with that salaries.
+    SQL> select * from emp2b4 where sal=(select min(sal) from emp2b4);
+Find the name of employee which starts with ‘A’ and end with ‘N’
+    SQL> select e.ename from emp2b4 e where e.ename like 'A%N';
+List all employees who have a salary greater than 1500 in the order of departmen number.
+    SQL> select * from emp2b4 where sal>1500 order by deptno;
+List deptno , dname ,min(sal) for all departments.
+    SQL> select d.deptno,d.dname,min(e.sal) from dept2b4 d,emp2b4 e where d.deptno=e.deptno group by d.deptno,d.dname;
+List all employees deptno.-wise.
+    SQL> select ename,deptno from emp2b4 order by deptno;
+Display all employee names, number, deptname & location of all employees.
+    SQL> select e.ename,e.empno,d.dname,d.loc from emp2b4 e,dept2b4 d where d.deptno=e.deptno;
+Find the employees belongs to the research department.
+    SQL> select * from emp2b4 e where e.deptno=(select d.deptno from dept2b4 d where d.dname='RESEARCH');
+Find employee name employee number, their salary who were hired after 01/02/97.
+    SQL> select ename,empno,sal from emp2b4 where hiredate>'01-FEB-1997';
+Find the second maximum salary of employee table.
+    SQL> select max(sal) from emp2b4 where sal<(select max(sal) from emp2b4);
