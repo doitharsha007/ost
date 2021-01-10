@@ -36,3 +36,5 @@ Find employee name employee number, their salary who were hired after 01/02/97.
     SQL> select ename,empno,sal from emp2b4 where hiredate>'01-FEB-1997';
 Find the second maximum salary of employee table.
     SQL> select max(sal) from emp2b4 where sal<(select max(sal) from emp2b4);
+Find employee name from employee table whose manager is NULL.
+    SQL> select ename from emp2b4 where mgr is null;
