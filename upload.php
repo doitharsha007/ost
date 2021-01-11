@@ -1,4 +1,5 @@
 
+
 <?php
 $msg = ""; 
 
@@ -8,8 +9,13 @@ if (isset($_POST['upload']))
 
 	$filename = $_FILES["uploadfile"]["name"]; 
 	$tempname = $_FILES["uploadfile"]["tmp_name"];	 
-		$folder = "img/".$filename; 
-		
+	$folder = "img/".$filename; 
+	$imageFileType = strtolower(pathinfo($folder,PATHINFO_EXTENSION));
+	if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif" ) {
+    echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+	}
+
+	else{	
 	$db = mysqli_connect("localhost", "root", "", "db1"); 
 
 		// Get all the submitted data from the form 
@@ -27,6 +33,7 @@ if (isset($_POST['upload']))
 			$msg = "Failed to move image"; 
 			echo $msg;
 		} 
-} 
+		} 
+}
 //$result = mysqli_query($db, "SELECT * FROM image"); 
 ?> 
